@@ -61,3 +61,10 @@ Husk, at det her er simple teoretiske beregninger uden medtaget overhead, og bot
 Compute (TOPS) er endnu en grænse, og det er det også, at nogle af de nye teknologier, de anvender, måske ikke kan udnyttes helt godt nok endnu i alle frameworks. Realistisk gætter jeg på 5-10 x tokens/sek, men det bliver spændende at se.
 
 Bemærk derudover det lave teoretiske VRAM-aftryk for Qwens kv-cache (hvis jeg har regnet rigtigt), der skyldes deres hybrid attention. Den er designet til lang context på alle ledder og kanter. Skru den op til 256k og du kan give den en bog, eller hold den på 32k og behold solid concurrency.
+
+## Tests på Ada 20 GB GPU
+
+- ### forhåndstestet mistral3.2 vs. qwen3-30b-a3b
+  (bemærk 30, ikke 80, både med og uden VL) begge i Q4 på mit Ada 20 GB, mistral3.2 kan være 100% i memory, qwen3 offloades delvist til CPU med overhead til følge = alligevel outputter qwen3 konsekvent tokens ca. 5 gange så hurtigt (bemærk, de har begge q4 effekten, så mistral er her relativt langt hurtigere end den ville have været i fp16, hvis jeg havde plads på gpu)
+- ### qwen3-next-80b-a3b
+  i Q4 som overhovedet ikke kan være i VRAM, så der er KÆMPE overhead, hvilket resulterer i lang prefill (lang tid til first token - det er bl.a. det som blackwell-gpu'ens x5 compute vs a100'eren hjælper på!), men når den først går i gang, er outputter den stadig hurtigere end mistral
