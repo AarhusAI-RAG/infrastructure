@@ -101,4 +101,30 @@ Here especially two hardware setups are relevant:
 - NVidea A100 80GB GPU setup available through Computerome
 - NVIDIA RTX 6000 Blackwell Max-Q 96GB GPU setup available through [Hetzner](https://www.hetzner.com/dedicated-rootserver/gex131/) 
 
-For a back-of-envelope calculation see [AarhusAI-RAG / infrastructure: Opsummering af teoretisk sammenligning mellem eksisterende AarhusAI og alternativ](https://github.com/AarhusAI-RAG/infrastructure/blob/main/docs/compare_A100-mistral24B_vs_RTXpro6000-qwen80b.md) 
+For a back-of-envelope calculation see [AarhusAI-RAG / infrastructure: Opsummering af teoretisk sammenligning mellem eksisterende AarhusAI og alternativ](https://github.com/AarhusAI-RAG/infrastructure/blob/main/docs/compare_A100-mistral24B_vs_RTXpro6000-qwen80b.md)
+
+
+## Conclusions regarding olmo
+
+The only thing Olmo really exceels at seems to be the openness. That can also (be chosen to) be an important aspect, 
+but that will probably require that we actually intent to exploit the fact that it is (probably) easier to fine tune 
+further. In this comparison we have only focused on the 32B Instruct version. To have that run on an A100 it would have
+to be quantizised, but there it also a 7B version available, which might be relevant, if we are any way finetuning for 
+specific usecases. No matter if it is the 32B version in an 8b eller 4b quantization or the 7B version, it will require
+that we invest time in learning to train LLMs for specific usecases. Olmo though is probably a better place to start 
+this due to the extensive material available from AllenAI compared to Mistral or Qwen. 
+Althought there are also many variant over qwen available, so there are probably both tutorials and consultant available
+that could help us training either of them.
+
+
+## Conclusions regarding Qwen3 Next
+
+The big selling point of the Qwen3 Next model is the architectual model design ensuring only 3B of the parameters are 
+activated at inference time, making it faster compared to both Mistral and Olmo.
+
+
+## Conclusion regarding Mistral
+
+The biggest selling point of Mistral is its quite hight ranking on the EuroEval danish leaderboard, this though might be
+due to it being better than the other two at e.g. few-shot-learning (aka. in-context learning), which might or might not
+be relevant for most of the intended usecases.
