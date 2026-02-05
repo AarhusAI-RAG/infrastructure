@@ -120,7 +120,8 @@ that could help us training either of them.
 ## Conclusions regarding Qwen3 Next
 
 The big selling point of the Qwen3 Next model is the architectual model design ensuring only 3B of the parameters are 
-activated at inference time, making it faster compared to both Mistral and Olmo.
+activated at inference time, making a much bigger (80B) model appear faster/more lightweight compared to both Mistral 
+and Olmo.
 
 
 ## Conclusion regarding Mistral
